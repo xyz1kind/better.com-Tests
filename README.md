@@ -13,4 +13,4 @@ The framework is built using Selenium WebDriver 3, Java 8, Maven, TestNG, Extent
 - take a look : [http://localhost:8080](http://localhost:8080)
 
 2) Open the project on IntelliJ
-3) Make sure all files are downloaded (testng.xml, configuration.properties, pom.xml)
+3) Make sure all files are downloaded ('testng.xml', configuration.properties, pom.xml)
