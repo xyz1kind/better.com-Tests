@@ -21,7 +21,7 @@ public class Driver {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.setHeadless(false);
+                    chromeOptions.setHeadless(true);
                     driver = new ChromeDriver(chromeOptions);
                     break;
 

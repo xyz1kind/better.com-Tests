@@ -15,10 +15,10 @@ import java.util.Random;
 
 public class BasePage {
 
-    public WebDriver driver;
-    private Random random = new Random();
+    public static WebDriver driver;
+    private static Random random = new Random();
 
-    public int pickRandomNumber(int maxValue) {
+    public static int pickRandomNumber(int maxValue) {
         return random.nextInt(maxValue);
     }
 
@@ -32,26 +32,26 @@ public class BasePage {
     }
 
     public static void waitForVisibility (WebElement element) {
-        WebDriverWait wait = new WebDriverWait(Driver.get(), 10);
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 5);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public static void waitForVisibilityOfElements(List<WebElement> elements) {
-        WebDriverWait wait = new WebDriverWait(Driver.get(), 10);
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 5);
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
-    public void waitForClickabilityOfElement(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(Driver.get(), 10);
+    public static void waitForClickabilityOfElement(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 5);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public String getText (WebElement element) {
+    public static String getText (WebElement element) {
         waitForVisibility(element);
         return element.getText().trim();
     }
 
-    public void click (WebElement element) {
+    public static void click (WebElement element) {
         waitForVisibility(element);
         waitForClickabilityOfElement(element);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
@@ -66,7 +66,7 @@ public class BasePage {
         }
     }
 
-    public WebElement pickRandomElement (List<WebElement> elements) {
+    public static WebElement pickRandomElement (List<WebElement> elements) {
         int filter = pickRandomNumber(elements.size());
         WebElement selectElement = elements.get(filter);
         waitForClickabilityOfElement(selectElement);

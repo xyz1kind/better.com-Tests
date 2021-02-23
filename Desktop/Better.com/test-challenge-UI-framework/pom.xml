@@ -17,6 +17,28 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                    <reportsDirectory>target/surefire-reports-${surefire.forkNumber}</reportsDirectory>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/Suite1.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/Suite2.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
     <name>test-challenge-UI-framework</name>
