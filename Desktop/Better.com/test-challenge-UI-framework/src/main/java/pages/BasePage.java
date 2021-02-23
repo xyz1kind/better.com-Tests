@@ -54,11 +54,11 @@ public class BasePage {
     public static void click (WebElement element) {
         waitForVisibility(element);
         waitForClickabilityOfElement(element);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].click()", element);
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", element);
     }
 
-    public void sendKeys (WebElement element, String keyword) {
+    public static void sendKeys (WebElement element, String keyword) {
         waitForVisibility(element);
         char[] chars = keyword.toCharArray();
         for(char c : chars) {

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.TweetPage;
+import utils.ConfigReader;
 import utils.Driver;
 
 import static pages.BasePage.*;
@@ -25,6 +26,8 @@ public class MainPageTest extends BaseTest {
 
     String CHAT_MESSAGE = "what's happening?";
     String CHARACTER_COUNT = "140";
+
+    String TEST_TEXT = ConfigReader.getProperty("text");
     String SENT_MESSAGE;
 
     @Test(description = "Launch The App")
@@ -74,7 +77,7 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test(description = "Every tweet displays the date when the tweet was sent")
-    public void The_Feed_Displays_The_Latest_Tweets() {
+    public void verifyTheFeed_Displays_The_Latest_Tweets() {
         extentTest = extentReports.createTest("Every tweet displays the date when the tweet was sent");
 
         waitForVisibilityOfElements(tweetPage.lstOfTweets);
@@ -92,7 +95,7 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test(description = "Verify Profile Pics are displayed correctly")
-    public void everyUserHasProfilePictureIsDisplayed() {
+    public void verifyEveryUserHasProfilePictureIsDisplayed() {
         extentTest = extentReports.createTest("Every user has profile picture is displayed");
 
         //I am using random user to see if they have a profile pic displayed
@@ -105,19 +108,19 @@ public class MainPageTest extends BaseTest {
             "and The chat input field only accepts '140' symbols" +
             "and after clicking the submit button tweet appears on the Feed")
     public void verifyUserIsAbleToSendTweets() {
-        extentTest = extentReports.createTest("The chat input field has 'what's happening?' message displayed " +
-                "and The chat input field only accepts '140' symbols" +
-                "and after clicking the submit button tweet appears on the Feed");
+        extentTest = extentReports.createTest("Sent message test: 140 characters, submit button, posted date etc.");
 
         String CHAT_TEXT = tweetPage.chatInputField.getAttribute("placeholder").trim();
         Assert.assertTrue(CHAT_TEXT.equals(CHAT_MESSAGE), "Chat message is not displayed");
 
+        sendKeys(tweetPage.chatInputField, TEST_TEXT);
         SENT_MESSAGE = tweetPage.chatInputField.getAttribute("value");
         String chatMessageLength = String.valueOf(SENT_MESSAGE.length()).trim();
         Assert.assertTrue(CHARACTER_COUNT.equals(chatMessageLength), "Chat message is accepting more than 140 characters");
 
         click(tweetPage.chatSubmitButton);
 
+        waitForVisibilityOfElements(tweetPage.lstOfTweets);
         String actualMessage = getText(tweetPage.lstOfTweets.get(4));
         Assert.assertTrue(SENT_MESSAGE.equals(actualMessage), "Recently sent chat message is not displayed");
     }

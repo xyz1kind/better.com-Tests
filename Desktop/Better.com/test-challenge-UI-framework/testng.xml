@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="methods" thread-count="7">
+    <test verbose="2" preserve-order="true" name="Better tests">
+        <classes>
+            <class name="tests.MainPageTest"><methods>
+                <include name="verifyUserCanLaunchTheApp"/>
+                <include name="verifyTheFeedDisplaysTheLatestTweets"/>
+                <include name="verifyTheFeedDisplaysTheListOfUsers"/>
+                <include name="verifyEveryTweetHasFirstNameLastNameAndUsername"/>
+                <include name="The_Feed_Displays_The_Latest_Tweets"/>
+                <include name="everyUserHasProfilePictureIsDisplayed"/>
+                <include name="verifyUserIsAbleToSendTweets"/>
+            </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

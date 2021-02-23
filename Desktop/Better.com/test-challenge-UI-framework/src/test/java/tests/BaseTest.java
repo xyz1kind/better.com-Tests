@@ -42,6 +42,7 @@ public class BaseTest {
     @AfterTest
     public void afterTest() {
         extentReports.flush();
+        Driver.close();
     }
 
 
@@ -71,6 +72,5 @@ public class BaseTest {
         } else if (result.getStatus() == ITestResult.SKIP) {
             extentTest.skip("Test case was skipped : " + result.getName());
         }
-        Driver.close();
     }
 }
